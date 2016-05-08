@@ -27,6 +27,7 @@ fi
 sudo -su vagrant cpanm Mojolicious::Lite JSON::XS Array::Diff
 
 cd /home/vagrant
-git clone https://github.com/kavehmz/notifypack.git
+[ ! -d notifypack ] && git clone https://github.com/kavehmz/notifypack.git
+cd notifypack && git pull
 
 exit 0
