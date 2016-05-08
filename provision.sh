@@ -4,7 +4,7 @@ export DEBIAN_FRONTEND=noninteractive
 
 [[ "$(uname -a)" == *"Debian"* ]] && echo "deb http://http.debian.net/debian jessie-backports main" > /etc/apt/sources.list.d/jessie_backports.list
 apt-get update
-apt-get install -y libjson-perl git httpie locate curl cpanminus exuberant-ctags htop iotop atop sysdig ack-grep linux-tools-3.16
+apt-get install -y git cpanminus redis-server
 apt-get -y upgrade
 
 if [ ! -f /etc/cron.d/zram ]
@@ -23,5 +23,10 @@ End
 	echo "@reboot root /opt/zram.sh" > /etc/cron.d/zram
 	/opt/zram.sh
 fi
+
+sudo -su vagrant cpanm Mojolicious::Lite JSON::XS Array::Diff
+
+cd /home/vagrant
+git clone git@github.com:kavehmz/notifypack.git
 
 exit 0
